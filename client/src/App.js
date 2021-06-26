@@ -1,11 +1,24 @@
-import logo from "./logo.svg";
-import "./App.css";
 
-function App() {
+import React from 'react';
+import { Container } from 'react-bootstrap'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Homescreen from './screens/Homescreen'
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">HELLO WORLD</header>
-    </div>
+    <>
+    <Header />
+    <main className='py-3' >
+      <Container>
+      <Homescreen />
+      </Container>
+    
+    </main>
+    <Footer />
+    </>
+    
   );
 }
 

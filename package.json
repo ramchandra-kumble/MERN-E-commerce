@@ -6,11 +6,18 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-async-handler": "^1.1.4"
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^5.13.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.8"
+  },
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Me",
   "license": "MIT"

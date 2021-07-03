@@ -11,7 +11,7 @@ import {Spinner} from 'react-bootstrap'
          display:'block',
         }}
         >
-      <span class='sr-only'>Loading...</span>
+      <span className='sr-only'>Loading...</span>
         </Spinner>
     )
 }

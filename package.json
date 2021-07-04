@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
-    "nodemon": "^2.0.8"
+    "nodemon": "^2.0.9"
   },
   "scripts": {
     "start": "node server",

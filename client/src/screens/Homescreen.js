@@ -4,18 +4,19 @@ import { Row, Col } from "react-bootstrap"
 import Product from "../components/Product"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
-
-import {listProducts} from '../actions/productAction'
+import { listProducts } from '../actions/productAction'
 
 
 
 const Homescreen = () => {
   const dispatch = useDispatch()
   const productList = useSelector(state =>state.productList)
-  const {loading,error,products } = productList
+  const {loading,error, products } = productList
   useEffect(() =>{
       dispatch(listProducts())
-  },[dispatch ])
+  },[ dispatch ])
+
+ 
 
   return (
     <>

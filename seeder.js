@@ -30,7 +30,7 @@ const importData = async () => {
      process.exit()
      
  } catch (error) {
-     console.error(`${error}`)
+     console.error(error)
      process.exit(1)
  }
 }
@@ -45,7 +45,7 @@ const destroyData = async () => {
         process.exit()
         
     } catch (error) {
-        console.error(` ${error}`)
+        console.error(error)
         process.exit(1)
     }
    }

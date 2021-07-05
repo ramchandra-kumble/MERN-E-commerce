@@ -1,6 +1,7 @@
 const express=require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
+const products = require('./data/products')
 const productRoutes = require('./routes/productRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 
@@ -14,6 +15,11 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/products',productRoutes)
+
+
+
+
+
 
 app.use(notFound)
 

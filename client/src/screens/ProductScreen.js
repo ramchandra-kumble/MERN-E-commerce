@@ -12,12 +12,12 @@ import { listProductDetails } from "../actions/productAction"
 
 const ProductScreen = ({ match }) => {
 
-  const dispatch =useDispatch()
-  const productDetails=useSelector(state=> state.productDetails)
-  const {loading,error, product} =productDetails
-useEffect(()=>
+  const dispatch = useDispatch()
+  const productDetails = useSelector(state=> state.productDetails)
+  const { loading, error, product} = productDetails
+useEffect(() =>
 {
-     dispatch(listProductDetails(match.param.id))
+     dispatch(listProductDetails(match.params.id))
 }
 ,[dispatch,match])
 
@@ -29,7 +29,7 @@ useEffect(()=>
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-      {loading?<Loader/>:error?<Message variant='danger'>{error}</Message>:(
+      {loading ? <Loader/>:error?<Message variant='danger'>{error}</Message>:(
             <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />

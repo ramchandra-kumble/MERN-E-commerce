@@ -23,6 +23,13 @@ const authUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/profile
 // @access Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  res.send("success");
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    const { password, _id, ...others } = user._doc;
+    res.status(200).json({ _id, ...others });
+  } else {
+    res.status(404).json("USER NOT FOUND");
+  }
 });
 module.exports = { authUser, getUserProfile };

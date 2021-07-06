@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-const products = require("./data/products");
+const connectDB = require("./config/db.js");
+
 const productRoutes = require("./routes/productRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
@@ -20,6 +20,10 @@ app.use(notFound);
 
 app.use(errorHandler);
 
-app.listen(8000, (req, res) => {
-  console.log("Stated express server at 8000");
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, (req, res) => {
+  console.log(
+    `Stated express server at ${process.env.NODE_ENV} mode on port ${PORT}`
+  );
 });

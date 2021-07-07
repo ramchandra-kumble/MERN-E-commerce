@@ -1,25 +1,35 @@
-const express=require('express')
-const dotenv = require('dotenv')
-const connectDB = require('./config/db')
-const productRoutes = require('./routes/productRoutes')
-const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db.js");
 
-dotenv.config()
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 
-connectDB()
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
-const app= express()
-app.get('/',(req,res)=>{
-    res.send('API is running..')
-})
+const app = express();
 
-app.use('/api/products',productRoutes)
+dotenv.config();
 
-app.use(notFound)
+connectDB();
 
-app.use(errorHandler)
+app.use(express.json());
 
-app.listen(8000, (req, res) => {
-    console.log("Stated express server at 8000");
-  });
+app.get("/", (req, res) => {
+  res.send("API is running..");
+});
 
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+
+app.use(notFound);
+
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, (req, res) => {
+  console.log(
+    `Stated express server at ${process.env.NODE_ENV} mode on port ${PORT}`
+  );
+});

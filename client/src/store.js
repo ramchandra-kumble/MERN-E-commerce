@@ -5,8 +5,12 @@ import {productListReducer,productDetailsReducer} from './reducers/productReduce
 import {cartReducers} from './reducers/cartReducers'
 const reducer = combineReducers({
     productList: productListReducer,
+<<<<<<< HEAD
     productDetailsReducer: productDetailsReducer,
     cart: cartReducers,
+=======
+    productDetails: productDetailsReducer,
+>>>>>>> 68065d521ab17185b9331a983a29658929e3d827
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse

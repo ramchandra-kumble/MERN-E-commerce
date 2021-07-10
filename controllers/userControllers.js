@@ -15,7 +15,8 @@ const authUser = asyncHandler(async (req, res) => {
 
     res.status(200).json({ _id, ...others, token: generateToken(_id) });
   } else {
-    res.status(401).json("Wrong username or password!");
+    res.status(401);
+    throw new Error("Invalid USERNAME OR PASSWORD!");
   }
 });
 

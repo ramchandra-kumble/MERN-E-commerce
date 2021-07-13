@@ -27,25 +27,30 @@ const Header = () => {
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <i
-                    style={{ padding: "5px" }}
+                    style={{ paddingRight: "5px" }}
                     className="fas fa-shopping-cart"
                   ></i>
                   Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandle}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <div>
+                  <NavDropdown title={userInfo.name} id="username">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandle}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
-                    <i style={{ padding: "5px" }} className="fas fa-user"></i>
+                    <i
+                      style={{ paddingRight: "5px" }}
+                      className="fas fa-user"
+                    ></i>
                     Sign in
                   </Nav.Link>
                 </LinkContainer>

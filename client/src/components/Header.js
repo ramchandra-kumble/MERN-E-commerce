@@ -23,25 +23,35 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
+            <Nav style={{ marginLeft: "auto" }}>
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Cart
+                  <i
+                    style={{ paddingRight: "5px" }}
+                    className="fas fa-shopping-cart"
+                  ></i>
+                  Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandle}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <div>
+                  <NavDropdown title={userInfo.name} id="username">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandle}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
-                    <i className="fas fa-user"></i> Sign in
+                    <i
+                      style={{ paddingRight: "5px" }}
+                      className="fas fa-user"
+                    ></i>
+                    Sign in
                   </Nav.Link>
                 </LinkContainer>
               )}

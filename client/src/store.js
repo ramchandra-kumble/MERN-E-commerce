@@ -12,15 +12,20 @@ import {
   userUpdateProfileReducer,
 } from "./reducers/userReducers";
 import { cartReducers } from "./reducers/cartReducers";
+import { orderCreateReducer} from "./reducers/orderReducers"
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducers,
   userLogin: userLoginReducer,
+<<<<<<< HEAD
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+=======
+  orderCreate: orderCreateReducer
+>>>>>>> c629833f3e4c8d38e9ff7003333335fa68ea4121
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

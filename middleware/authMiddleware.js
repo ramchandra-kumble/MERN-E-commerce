@@ -3,7 +3,6 @@ const User = require("../model/userModel");
 
 const protect = async (req, res, next) => {
   let token = req.headers.authorization;
-
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -19,7 +18,7 @@ const protect = async (req, res, next) => {
     }
   }
   if (!token) {
-    res.status(401).json("NO Autherization, No Token");
+    res.status(401).json("No Autherization, No Token");
   }
 };
 const admin = (req, res, next) => {

@@ -8,7 +8,6 @@ import { FormContainer } from "../components/FormContainer";
 import { listProductDetails, updateProduct } from "../actions/productAction";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 
-
 const ProductEditScreen = ({ match, history, location }) => {
   const productId = match.params.id;
 
@@ -19,23 +18,23 @@ const ProductEditScreen = ({ match, history, location }) => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
- 
-
 
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
-
   const productUpdate = useSelector((state) => state.productUpdate);
-  const { loading: loadingUpdate, error: errorUpdate, success: succesUpdate} = productUpdate;
- 
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: succesUpdate,
+  } = productUpdate;
 
   useEffect(() => {
-    if(succesUpdate){
-      dispatch({type: PRODUCT_UPDATE_RESET})
-      history.push('/admin/productlist')
+    if (succesUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      history.push("/admin/productlist");
     } else {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId));
@@ -47,23 +46,23 @@ const ProductEditScreen = ({ match, history, location }) => {
         setCountInStock(product.countInStock);
         setDescription(product.description);
       }
-
     }
-            
   }, [dispatch, history, productId, product, succesUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateProduct({
-      _id: productId,
-      name,
-      price,
-      image,
-      brand,
-      category,
-      countInStock,
-      description
-    }))
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        countInStock,
+        description,
+      })
+    );
   };
 
   return (
@@ -74,7 +73,7 @@ const ProductEditScreen = ({ match, history, location }) => {
       <FormContainer>
         <h1> Edit Product </h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -102,9 +101,9 @@ const ProductEditScreen = ({ match, history, location }) => {
             </Form.Group>
 
             <Form.Group controlId="image">
-            <Form.Label>Image</Form.Label>
-            <Form.Control
-                type="number"
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
                 palceholeder="Enter Image url"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
@@ -112,8 +111,8 @@ const ProductEditScreen = ({ match, history, location }) => {
             </Form.Group>
 
             <Form.Group controlId="brand">
-            <Form.Label>Brand</Form.Label>
-            <Form.Control
+              <Form.Label>Brand</Form.Label>
+              <Form.Control
                 type="text"
                 palceholeder="Enter Brand"
                 value={brand}
@@ -131,10 +130,9 @@ const ProductEditScreen = ({ match, history, location }) => {
               ></Form.Control>
             </Form.Group>
 
-            
             <Form.Group controlId="category">
-            <Form.Label>Category</Form.Label>
-            <Form.Control
+              <Form.Label>Category</Form.Label>
+              <Form.Control
                 type="text"
                 palceholeder="Enter Category"
                 value={category}
@@ -142,10 +140,9 @@ const ProductEditScreen = ({ match, history, location }) => {
               ></Form.Control>
             </Form.Group>
 
-            
             <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
+              <Form.Label>Description</Form.Label>
+              <Form.Control
                 type="text"
                 palceholeder="Enter Description"
                 value={description}

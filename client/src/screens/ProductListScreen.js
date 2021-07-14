@@ -4,7 +4,11 @@ import { Table, Button,Row,Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts, deleteProduct } from "../actions/productAction";
+import { 
+  listProducts, 
+  deleteProduct,
+  createProduct} from "../actions/productAction";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants"  
 
 const ProductListScreen = ({ history,match }) => {
   const dispatch = useDispatch();
@@ -15,16 +19,25 @@ const ProductListScreen = ({ history,match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
-const productDelete = useSelector((state) => state.productDelete);
+  const productDelete = useSelector((state) => state.productDelete);
   const { loading:loadingDelete, error:errorDelete, success:successDelete } = productDelete;
 
-  useEffect(() => {  
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
-      history.push("/login");
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading:loadingCreate, error:errorCreate, success:successCreate, product: createdProduct } = productCreate;
+
+  useEffect(() => {
+    dispatch({ type: PRODUCT_CREATE_RESET}) 
+    if (!userInfo.isAdmin) {
+      history.push("/login")
     } 
-  }, [dispatch, history, userInfo, successDelete]);
+
+    if(successCreate){
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    }else {
+      dispatch(listProducts())
+    }
+
+  }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")){
@@ -32,8 +45,8 @@ const productDelete = useSelector((state) => state.productDelete);
     }
   }
 
-    const createProductsHandler = (product) => {
-        //CREATE PRODUCT
+    const createProductsHandler = () => {
+        dispatch(createProduct())
     } 
 
 
@@ -44,13 +57,15 @@ const productDelete = useSelector((state) => state.productDelete);
         <h1>Products</h1>
         </Col>
         <Col className="text-right">
-            <Button className="my-3" style={{left : "400px", position: "relative"}} onClick="createProductsHandler">
+            <Button className="my-3" style={{left : "400px", position: "relative"}} onClick={createProductsHandler}>
                 <i className="fas fa-plus"></i> Create Product
             </Button>
         </Col>
     </Row> 
     {loadingDelete && <Loader />}
-    {errorDelete && <Message variant="danger">{error}</Message>}
+    {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+    {loadingCreate && <Loader />}
+    {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (

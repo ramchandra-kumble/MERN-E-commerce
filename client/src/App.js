@@ -33,10 +33,14 @@ const App = () => {
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/" component={Homescreen} exact />
+          <Route path="/page/:pageNumber" component={Homescreen}  />
+          <Route path="/search/:keyword/page/:pageNumber" component={Homescreen} exact />
+          <Route path="/search/:keyword" component={Homescreen} exact />
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-          <Route path="/admin/productlist" component={ProductListScreen} />
+          <Route path="/admin/productlist" component={ProductListScreen} exact />
+          <Route path="/admin/productlist/:pageNumber" component={ProductListScreen} exact />
           <Route path="/admin/orderlist" component={OrderListScreen} />
           <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
